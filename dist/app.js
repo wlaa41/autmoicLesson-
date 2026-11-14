@@ -21,7 +21,7 @@
   LESSONS.forEach((lesson, index) => {
     const next = LESSONS[index + 1];
     const link = document.createElement("a");
-    link.href = "#" + lesson.id;
+    link.href = lesson.id === "quantum" ? "./quantum.html" : "#" + lesson.id;
     link.className = "nav-link";
     link.innerHTML = '<span class="nav-index" aria-hidden="true">' + count(index + 1) + '</span><span>' + shortTitles[index] + '</span>';
     list.append(link);
@@ -30,18 +30,27 @@
     section.className = "lesson-card";
     section.id = lesson.id;
     section.setAttribute("aria-labelledby", "title-" + lesson.id);
+    if (lesson.id === "quantum") {
+      section.innerHTML =
+        '<p class="chapter-label">الدرس ' + count(index + 1) + ' · ص <bdi dir="ltr">' + lesson.pages + '</bdi></p>' +
+        '<h2 id="title-quantum">الأعداد الكمومية من الصفر</h2>' +
+        '<p class="lesson-intro">ابدأ بمعنى الذرّة والمدار. تعلّم الأعداد الأربعة واحداً واحداً، ثم اقرأ عنوان الإلكترون واحسب السعة بنفسك.</p>' +
+        '<a class="btn complete-btn" href="./quantum.html">ابدأ الدرس التفاعلي <span aria-hidden="true">←</span></a>';
+      body.append(section);
+      return;
+    }
     section.innerHTML =
       '<p class="chapter-label">الدرس ' + count(index + 1) + ' · ص ' + '<bdi dir="ltr">' + lesson.pages + '</bdi></p>' +
       '<h2 id="title-' + lesson.id + '">' + lesson.title + '</h2>' +
       '<p class="lesson-intro">' + lesson.intro + '</p>' +
       '<div class="lesson-lab" id="lab-' + lesson.id + '"></div>' +
-      (["cloud", "quantum"].includes(lesson.id) ? '<a class="btn complete-btn madarat-callout" href="./madarat.html">استكشف المدارات ثلاثية الأبعاد <span aria-hidden="true">←</span></a>' : '') +
+      (lesson.id === "cloud" ? '<a class="btn complete-btn madarat-callout" href="./madarat.html">استكشف المدارات ثلاثية الأبعاد <span aria-hidden="true">←</span></a>' : '') +
       '<div class="lesson-bridge"><h3>كيف نعبّر عنها بلغة الكتاب؟</h3><ul>' + listItems(lesson.bridge) + '</ul></div>' +
       '<div class="worked"><h3>مثال محلول خطوة بخطوة</h3><ol>' + listItems(lesson.worked) + '</ol></div>' +
       '<details class="terms"><summary>مصطلحات الدرس</summary><dl>' +
       lesson.terms.map(([term, definition]) => '<dt>' + term + '</dt><dd>' + definition + '</dd>').join("") +
       '</dl></details><div class="lesson-actions"><button type="button" class="btn complete-btn" aria-pressed="false">تمّ الدرس</button>' +
-      '<a class="next-link" href="#' + (next ? next.id : "test") + '">' + (next ? "الدرس التالي" : "ابدأ الاختبار") + ' <span aria-hidden="true">←</span></a></div>';
+      '<a class="next-link" href="' + (next?.id === "quantum" ? "./quantum.html" : "#" + (next ? next.id : "test")) + '">' + (next ? "الدرس التالي" : "ابدأ الاختبار") + ' <span aria-hidden="true">←</span></a></div>';
     body.append(section);
 
     section.querySelector(".complete-btn").addEventListener("click", () => {
@@ -62,15 +71,17 @@
       const link = list.children[index];
       link.classList.toggle("is-complete", done);
       link.querySelector(".nav-index").textContent = done ? "✓" : count(index + 1);
-      button.setAttribute("aria-pressed", String(done));
-      button.textContent = done ? "✓ تمّ الدرس" : "تمّ الدرس";
+      if (button?.tagName === "BUTTON") {
+        button.setAttribute("aria-pressed", String(done));
+        button.textContent = done ? "✓ تمّ الدرس" : "تمّ الدرس";
+      }
     });
   }
 
   function updateNavigation() {
     const active = [...LESSONS].reverse().find((lesson) => document.getElementById(lesson.id).getBoundingClientRect().top <= 155);
     for (const link of list.children) {
-      if (active && link.hash === "#" + active.id) link.setAttribute("aria-current", "location");
+      if (active && (link.hash === "#" + active.id || (active.id === "quantum" && link.pathname.endsWith("/quantum.html")))) link.setAttribute("aria-current", "location");
       else link.removeAttribute("aria-current");
     }
   }

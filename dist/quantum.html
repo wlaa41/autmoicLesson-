@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5fb">
+  <meta name="description" content="تعلّم الأعداد الكمومية من الصفر. شرح عربي خطوة بخطوة مع رسومات وتجارب وأسئلة قصيرة.">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./quantum-beginner.css">
+  <link rel="stylesheet" href="./quantum-beginner-labs.css">
+  <title>الأعداد الكمومية من الصفر | دليل الكيمياء</title>
+  <script defer src="./quantum-beginner-data.js"></script>
+  <script defer src="./quantum-beginner-labs.js"></script>
+  <script defer src="./quantum-beginner.js"></script>
+</head>
+<body class="qb-page">
+  <a class="skip" href="#qb-lesson">انتقل إلى الدرس</a>
+  <header class="qb-top">
+    <div class="qb-wrap qb-header">
+      <a class="qb-brand" href="./"><img src="./icon.svg" width="36" height="36" alt=""> دليل الكيمياء</a>
+      <a href="./madarat.html">مختبر المدارات ثلاثي الأبعاد <span aria-hidden="true">↖</span></a>
+    </div>
+  </header>
+  <main class="qb-wrap">
+    <section class="qb-intro" aria-labelledby="qb-title">
+      <div>
+        <p class="qb-kicker">بنية الذرّة · الصفحات <bdi dir="ltr">٣٤–٣٦</bdi></p>
+        <h1 id="qb-title">الأعداد الكمومية <span>من الصفر</span></h1>
+        <p>ما الإلكترون؟ وما المقصود بمداره؟ خذ فكرة واحدة في كل خطوة، وجرّبها بيدك، حتى تقرأ عنوان الإلكترون وتحلّ مثال الكتاب بنفسك.</p>
+      </div>
+      <a class="qb-start" href="#qb-lesson">ابدأ الدرس <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <div class="qb-layout">
+      <aside class="qb-sidebar" aria-label="مراحل الدرس">
+        <div class="qb-card qb-nav">
+          <h2>خطوات الدرس</h2>
+          <p id="qb-progress-text">٠ من ٨ خطوات</p>
+          <progress id="qb-progress" max="8" value="0" aria-label="الخطوات المجابة بشكل صحيح"></progress>
+          <details id="qb-map">
+            <summary>اعرض خطوات الدرس</summary>
+            <nav id="qb-step-links" aria-label="انتقل إلى خطوة"></nav>
+          </details>
+        </div>
+      </aside>
+      <div class="qb-main">
+        <article class="qb-card qb-lesson" id="qb-lesson" aria-labelledby="qb-step-title">
+          <p id="qb-step-index" class="qb-kicker"></p>
+          <h2 id="qb-step-title" tabindex="-1">ما الذرّة؟</h2>
+          <p id="qb-step-lead" class="qb-lead"></p>
+          <ul id="qb-step-points" class="qb-points"></ul>
+
+          <section class="qb-activity" aria-label="تجربة تفاعلية">
+            <p id="qb-lab-hint"></p>
+            <div id="qb-lab"></div>
+          </section>
+
+          <details class="qb-book" id="qb-book">
+            <summary>كيف تَرِد هذه الفكرة في الكتاب؟</summary>
+            <p id="qb-book-copy"></p>
+          </details>
+
+          <section class="qb-check" aria-labelledby="qb-check-title">
+            <h3 id="qb-check-title">تأكّد من فهمك</h3>
+            <p id="qb-check-prompt"></p>
+            <div class="qb-options" id="qb-options" role="group" aria-labelledby="qb-check-prompt"></div>
+            <p class="qb-feedback" id="qb-feedback" role="status" hidden></p>
+          </section>
+
+          <div class="qb-pager">
+            <button type="button" class="qb-back" id="qb-prev">→ الخطوة السابقة</button>
+            <button type="button" class="qb-next" id="qb-next">الخطوة التالية ←</button>
+          </div>
+        </article>
+        <article class="qb-card qb-lesson qb-finish" id="qb-summary" aria-labelledby="qb-summary-title" hidden>
+          <p class="qb-kicker">مراجعة الدرس</p>
+          <h2 id="qb-summary-title" tabindex="-1">اقرأ عنوان الإلكترون بنفسك</h2>
+          <p id="qb-result" class="qb-lead"></p>
+          <div class="qb-example" dir="ltr"><bdi>(3, 2, 0, +½)</bdi></div>
+          <dl class="qb-recap">
+            <dt><bdi dir="ltr">n = 3</bdi></dt><dd>السوية الرئيسية الثالثة <bdi dir="ltr">M</bdi>.</dd>
+            <dt><bdi dir="ltr">ℓ = 2</bdi></dt><dd>السوية الفرعية <bdi dir="ltr">3d</bdi>.</dd>
+            <dt><bdi dir="ltr">m<sub>ℓ</sub> = 0</bdi></dt><dd>إحدى القيم الخمس التي تميّز مدارات <bdi dir="ltr">3d</bdi>.</dd>
+            <dt><bdi dir="ltr">m<sub>s</sub> = +½</bdi></dt><dd>إحدى حالتي اللف الذاتي، ونرمز إليها بسهم لأعلى.</dd>
+          </dl>
+          <div class="qb-summary-note"><strong>مسألة السعة</strong><p>في <bdi dir="ltr">3d</bdi> خمسة مدارات. إذا امتلأ كل مدار بإلكترونين فالسعة <bdi dir="ltr">5 × 2 = 10</bdi>. السوية <bdi dir="ltr">M</bdi> تضم <bdi dir="ltr">3s + 3p + 3d</bdi>، وسعتها الكلية <bdi dir="ltr">2 + 6 + 10 = 18</bdi> إلكتروناً.</p></div>
+          <div class="qb-summary-actions">
+            <a class="qb-next" href="./#filling" id="qb-finish-link">انتقل إلى التوزيع الإلكتروني ←</a>
+            <button type="button" class="qb-back" id="qb-review">راجع الخطوات</button>
+          </div>
+        </article>
+        <noscript><div class="qb-card qb-lesson">فعّل JavaScript لفتح الشرح والتجارب والأسئلة.</div></noscript>
+      </div>
+    </div>
+  </main>
+  <footer class="qb-wrap qb-footer">
+    <a href="./#quantum">العودة إلى الدليل</a>
+    <a href="https://openstax.org/books/chemistry-2e/pages/6-3-development-of-quantum-theory" rel="noopener noreferrer" target="_blank">مرجع الأعداد الكمومية في OpenStax</a>
+  </footer>
+</body>
+</html>
