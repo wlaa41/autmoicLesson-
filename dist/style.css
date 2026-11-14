@@ -116,3 +116,13 @@ bdi,code,[dir="ltr"]{font-variant-numeric:lining-nums}
   .hero-actions .btn{font-size:.8rem;padding-inline:10px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.madarat-link{color:var(--blue)}
+.madarat-callout{margin-block:-5px 2px}
+@media(max-width:415px){
+  .top-links{gap:7px}
+  .top-links .madarat-link{font-size:.72rem}
+  .top-links a:last-child{padding-inline:6px}
+}
+@media(max-width:365px){
+  .top-links a:first-child{display:none}
+}

@@ -35,6 +35,7 @@
       '<h2 id="title-' + lesson.id + '">' + lesson.title + '</h2>' +
       '<p class="lesson-intro">' + lesson.intro + '</p>' +
       '<div class="lesson-lab" id="lab-' + lesson.id + '"></div>' +
+      (["cloud", "quantum"].includes(lesson.id) ? '<a class="btn complete-btn madarat-callout" href="./madarat.html">استكشف المدارات ثلاثية الأبعاد <span aria-hidden="true">←</span></a>' : '') +
       '<div class="lesson-bridge"><h3>كيف نعبّر عنها بلغة الكتاب؟</h3><ul>' + listItems(lesson.bridge) + '</ul></div>' +
       '<div class="worked"><h3>مثال محلول خطوة بخطوة</h3><ol>' + listItems(lesson.worked) + '</ol></div>' +
       '<details class="terms"><summary>مصطلحات الدرس</summary><dl>' +
