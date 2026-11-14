@@ -108,7 +108,7 @@ export default function OrbitalArt({ family, variant = 0, angle = 0, highlight, 
   const mainDescription = named ? description : `${noun}. ${description}`;
 
   return <svg className={`orbital-art${compact ? ' orbital-art-compact' : ''}`} viewBox={`0 0 440 ${named ? 355 : 286}`} role="img" aria-labelledby={`${id}-title ${id}-description`} data-family={family} data-variant={variant} style={{ display: 'block', width: '100%', height: 'auto', overflow: 'visible' }}>
-    <title id={`${id}-title`}>{ORBITAL_FAMILIES[family].name} — {noun}</title>
+    <title id={`${id}-title`}>{`${ORBITAL_FAMILIES[family].name} — ${noun}`}</title>
     <desc id={`${id}-description`}>{mainDescription} النقطة الذهبية تمثّل النواة، وهي مكبّرة وليست على المقياس الحقيقي. اللون لا يدلّ على شحنة مختلفة.</desc>
     <defs>
       <radialGradient id={`${id}-sphere`} cx="37%" cy="31%" r="67%"><stop offset="0" stopColor="#e3f4e9" stopOpacity=".92"/><stop offset=".32" stopColor="#8ecbb8" stopOpacity=".78"/><stop offset=".7" stopColor="#2d8c75" stopOpacity=".65"/><stop offset=".88" stopColor="#2d8c75" stopOpacity=".3"/><stop offset="1" stopColor="#2d8c75" stopOpacity="0"/></radialGradient>

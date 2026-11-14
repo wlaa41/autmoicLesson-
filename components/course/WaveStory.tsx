@@ -41,7 +41,7 @@ export default function WaveStory(){
     <figure className={'ws-demonstration '+(invalid?'ws-invalid':'')}>
       <figcaption>{invalid?'البرتقالي يبيّن موضع الطرف المقترح المخالف للتثبيت.':'الأخضر هو الوتر في لحظة واحدة. الخط المتقطّع هو موضعه المستقيم قبل الاهتزاز.'}</figcaption>
       <svg viewBox="0 0 700 270" role="img" aria-labelledby={titleId}>
-        <title id={titleId}>{chosen.title}. {invalid?'نهاية المنحنى لا توافق موضع الطرف المثبت.':'الصورة لوتر واحد، وطرفاه ثابتان.'}</title>
+        <title id={titleId}>{`${chosen.title}. ${invalid?'نهاية المنحنى لا توافق موضع الطرف المثبت.':'الصورة لوتر واحد، وطرفاه ثابتان.'}`}</title>
         <line x1="58" y1="145" x2="642" y2="145" stroke="#a7b7a9" strokeWidth="2" strokeDasharray="6 7"/>
         <rect x="40" y="118" width="18" height="55" rx="4" fill="#b9c6b4"/>
         <rect x="642" y="118" width="18" height="55" rx="4" fill="#b9c6b4"/>
