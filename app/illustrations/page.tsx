@@ -1,4 +1,4 @@
 import {Header,Footer} from '@/components/course/Shell';
 import OrbitalAtlas from '@/components/course/OrbitalAtlas';
-export const metadata={title:'من الصورة إلى الحرف | دليل المدارات المصوّر'};
-export default function Page(){return <><Header/><main id="main" className="page-width standalone"><p className="eyebrow">دليلك المصوّر · من الفكرة إلى اسمها</p><h1>لنرَ ما تعنيه<br/>هذه الحروف.</h1><p className="standalone-intro">رسوم كبيرة، وأجزاء يمكنك تحديدها، وأسماء نفكّكها معاً. ابدأ بالشكل، ثم اكشف حرفه، ثم قارن بين الأمثلة.</p><OrbitalAtlas/></main><Footer/></>}
+export const metadata={title:'لماذا توجد هذه الأشكال؟ | دليل المدارات من البداية'};
+export default function Page(){return <><Header/><main id="main" className="page-width standalone"><p className="eyebrow">قبل الرسوم والأسماء والحروف</p><h1>لماذا توجد<br/>هذه الأشكال؟</h1><p className="standalone-intro">نبدأ بما نحاول وصفه، ثم نفهم سبب اختلاف الأشكال. نجمع نتائج تجربة بأنفسنا، وبعد ذلك فقط نسمّي ما فهمناه.</p><OrbitalAtlas/></main><Footer/></>}
