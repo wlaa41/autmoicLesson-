@@ -1,4 +1,6 @@
 'use client';
+import OrbitalArt from './OrbitalArt';
+import OrbitalActivities from './OrbitalActivities';
 
 import { useState } from 'react';
 import './labs.css';
@@ -112,19 +114,13 @@ function LevelsLab() {
   <Feedback>اخترت المستوى {['الأول','الثاني','الثالث'][level]}. الرقم هنا اسم للترتيب. في العموم، حالات المستوى الأعلى تمتد أبعد. لكن الإلكترون لا يثبت على بُعد واحد، ومناطق المستويات قد تتداخل.</Feedback>
  </Frame>;
 }
-function ShapeVisual({shape}:{shape:number}) {
- return <svg className="lab-svg" viewBox="0 0 360 260" role="img" aria-label={`مثال تخطيطي لمدار من النوع ${shapes[shape]}`}>
-  <path d="M180 20v220M40 130h280" stroke="#d6e5df" strokeDasharray="5 5"/>
-  {shape===0?<circle cx="180" cy="130" r="82" fill="#48b39e" opacity=".45"/>:shape===1?<><ellipse cx="126" cy="130" rx="52" ry="39" fill="#48b39e" opacity=".58"/><ellipse cx="234" cy="130" rx="52" ry="39" fill="#48b39e" opacity=".58"/></>:Array.from({length:shape===2?4:6},(_,i)=>{const angle=i*(360/(shape===2?4:6))+(shape===2?45:0);return <ellipse key={i} cx="180" cy="77" rx="27" ry="52" transform={`rotate(${angle} 180 130)`} fill="#48b39e" opacity=".55"/>;})}
-  <circle cx="180" cy="130" r="6" fill="#e6a33f"/>
- </svg>;
-}
+function ShapeVisual({shape}:{shape:number}) { return <OrbitalArt family={(['s','p','d','f'] as const)[shape]} labels/>; }
 function ShapesLab() {
  const [shape,setShape]=useState(0);
  return <Frame intro="نصنّف المدارات في عائلات بحسب خصائص أشكالها. الاسم بالحرف مجرد تسمية تاريخية: «إس» للكروي، «بي» لفصّين، «دي» و«إف» لعائلات أكثر تنوّعاً. الآن نربط الاسم بالرسم.">
  <Picks items={['إس · s','بي · p','دي · d','إف · f']} value={shape} onChange={setShape}/><ShapeVisual shape={shape}/>
- <Feedback>{shape===0?'شكل مدار إس كروي في ثلاثة أبعاد؛ الدائرة هنا صورة مسطّحة لكرة.':shape===1?'هذان الفصّان معاً يمثّلان مداراً واحداً من نوع بي، وليس مدارين. توجد ثلاثة مدارات في هذه العائلة داخل المستوى المناسب.':shape===2?'هذا مثال مبسّط ذو أربعة فصوص من عائلة دي. ليست كل مدارات هذه العائلة بالشكل نفسه؛ هناك أيضاً شكل ذو فصّين وحلقة.':'هذه إشارة تخطيطية إلى تعقيد عائلة إف. لها سبعة مدارات بأشكال متعددة؛ الرسم ليس وصفاً دقيقاً لكل واحد منها.'}</Feedback>
- <p className="lab-caution">اللون يبيّن الشكل فقط؛ لا يرمز إلى شحنة أو إلكترون منفصل. الخطوط الرمادية خطوط مرجعية للرسم. الأسطح ليست حدوداً صلبة، وهذه رسومات ثنائية الأبعاد لأشكال مكانية.</p>
+ <Feedback>{shape===0?'شكل مدار إس كروي في ثلاثة أبعاد؛ الدائرة هنا صورة مسطّحة لكرة.':shape===1?'هذان الفصّان معاً يمثّلان مداراً واحداً من نوع بي، وليس مدارين. توجد ثلاثة مدارات في هذه العائلة داخل المستوى المناسب.':shape===2?'هذا مثال مبسّط ذو أربعة فصوص من عائلة دي. ليست كل مدارات هذه العائلة بالشكل نفسه؛ هناك أيضاً شكل ذو فصّين وحلقة.':'هذا مثال توضيحي ذو ثمانية فصوص لمدار واحد من عائلة إف. للعائلة سبعة مدارات بأشكال متعددة؛ عدد الفصوص لا يساوي عدد المدارات.'}</Feedback>
+ <p className="lab-caution">اللون يبيّن الشكل فقط؛ لا يرمز إلى شحنة أو إلكترون منفصل. التظليل يوضّح العمق فقط، وليس مقياساً لاحتمال وجود الإلكترون. الأسطح ليست حدوداً صلبة، وهذه إسقاطات توضيحية لأشكال مكانية.</p>
  </Frame>;
 }
 function LabelsLab() {
@@ -249,9 +245,9 @@ export default function Labs({kind}:{kind:string}) {
   case 'cloud':return <ProbabilityLab key={kind} cloud/>;
   case 'levels':return <LevelsLab/>;
   case 'shapes':return <ShapesLab/>;
-  case 'labels':return <LabelsLab/>;
-  case 'capacity':return <CapacityLab key={kind}/>;
-  case 'notation':return <CapacityLab key={kind} notation/>;
+  case 'labels':return <OrbitalActivities mode="labels"/>;
+  case 'capacity':return <OrbitalActivities key={kind} mode="capacity"/>;
+  case 'notation':return <OrbitalActivities key={kind} mode="notation"/>;
   case 'spin':return <SpinLab/>;
   case 'filling':return <FillingLab/>;
   case 'configurations':return <ConfigurationsLab key={kind}/>;
