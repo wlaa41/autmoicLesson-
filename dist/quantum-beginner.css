@@ -75,3 +75,18 @@
   #qb-step-links{grid-template-columns:repeat(2,minmax(0,1fr));padding-block-start:5px}
   .qb-lesson{border-radius:15px}
 }
+.qb-overview{margin-block-end:18px;scroll-margin-top:15px}
+.qb-page{scroll-padding-top:15px}
+.qb-big-ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-block:15px}
+.qb-big-ideas>div{background:#f6f4ff;border:1px solid #e4ddf8;border-radius:12px;padding:12px}
+.qb-big-ideas p,.qb-oxygen p{margin-block-start:4px;color:var(--muted);font-size:.92rem}
+.qb-oxygen{border:1px solid #cfe8de;background:#f4fbf8;border-radius:12px;padding:13px;margin-block:13px}
+.qb-dots{display:flex;gap:6px;flex-wrap:wrap;margin-block:8px}
+.qb-dots i{width:12px;height:12px;border-radius:50%;background:#238064}
+.qb-oxygen-detail summary,.qb-oxygen-breakdown summary{cursor:pointer;min-height:44px;align-content:center;color:#145f47;font-weight:700}
+.qb-oxygen-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-block:5px}
+.qb-oxygen-rows>div{border:1px solid #d3e9e0;border-radius:9px;padding:7px 10px;background:#fff}
+.qb-oxygen-rows span{display:block;color:var(--muted);font-size:.86rem}
+.qb-oxygen-breakdown{padding-inline:5px}
+.qb-summary-oxygen{margin-block-start:9px}
+@media(max-width:740px){.qb-big-ideas{grid-template-columns:minmax(0,1fr);gap:7px}.qb-dots{gap:4px}.qb-dots i{width:10px;height:10px}}
