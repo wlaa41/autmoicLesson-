@@ -113,39 +113,61 @@ function mountQuantumLab(container, id) {
   }
 
   if (id === "n") {
-    scaffold("جرّب اختيار الطابق", "اضغط على مستوى رئيسي. الحرف اسم المستوى في الكتاب.",
-      '<div class="qbl-floors" aria-hidden="true"></div>');
-    const floorControls = one(".qbl-controls");
+    scaffold("شاهد الضوء ثم اختر مستوى", "اضغط الزر لرؤية أربعة خطوط مرئية من ضوء الهيدروجين. الرسم يقرّب ألوانها.",
+      '<div class="qbl-spectrum-demo"><button type="button" class="qbl-spectrum-toggle" aria-expanded="false" aria-controls="qbl-spectrum-data">أظهر خطوط ضوء الهيدروجين</button>' +
+      '<div id="qbl-spectrum-data" hidden><div class="qbl-spectrum" role="img" aria-label="أربعة خطوط مرئية للهيدروجين: بنفسجي، أزرق بنفسجي، أزرق مخضر، وأحمر"><i></i><i></i><i></i><i></i></div>' +
+      '<p class="qbl-note">تظهر خطوط بألوان محدّدة. كل خط يمثّل ضوءاً خرج عند انتقال بين مستويين. الأشكال الكروية وغيرها تظهر في تجربة الخطوة التالية.</p></div></div>' +
+      '<div class="qbl-level-controls qbl-controls" aria-label="اختر مستوى رئيسياً"></div><div class="qbl-floors" aria-hidden="true"></div>');
+    const spectrum = one("#qbl-spectrum-data");
+    const spectrumToggle = one(".qbl-spectrum-toggle");
+    spectrumToggle.addEventListener("click", () => {
+      spectrum.hidden = !spectrum.hidden;
+      spectrumToggle.setAttribute("aria-expanded", String(!spectrum.hidden));
+      spectrumToggle.textContent = spectrum.hidden ? "أظهر خطوط ضوء الهيدروجين" : "أخفِ خطوط ضوء الهيدروجين";
+    });
+    one(".qbl-controls").remove();
+    const floorControls = one(".qbl-level-controls");
     const floors = one(".qbl-floors");
     floors.innerHTML = range(7, 1).reverse().map((n) => '<div data-floor="' + n + '">' + ltr("n = " + n) + '</div>').join("");
     function showFloor(n) {
       for (const floor of floors.children) floor.classList.toggle("qbl-selected", Number(floor.dataset.floor) === n);
-      setStatus("اخترت المستوى " + ltr(shellNames[n - 1]) + ' · ' + math("n", n) +
-        ". المستوى فيه " + ltr(n) + " من السويات الفرعية المسموحة.");
+      setStatus("اخترت المستوى رقم " + ltr(n) + ". رمزه في الكتاب " + ltr(shellNames[n - 1]) + "، ونكتب " + math("n", n) + ".");
     }
-    buttons(floorControls, range(7, 1).map((n) => [n, ltr(n + " · " + shellNames[n - 1])]), showFloor, 1);
+    buttons(floorControls, range(7, 1).map((n) => [n, "المستوى " + ltr(n)]), showFloor, 1);
     showFloor(1);
   }
 
   if (id === "l") {
-    scaffold("اكتشف أنواع الغرف المتاحة", "اختر المستوى الرئيسي أولاً. لاحظ كيف تتغيّر اختيارات السوية الفرعية.",
-      '<div class="qbl-controls qbl-second" aria-label="اختر قيمة العدد الكمومي الثانوي"></div><div class="qbl-shape" role="img"></div>');
+    scaffold("المستوى أولاً، ثم نوع السحابة", "ابدأ بالمستوى الثاني. بعد أن تقارن نوعيه، غيّر المستوى لترى ما يظهر.",
+      '<p class="qbl-choice-heading">٢. اختر نوع السحابة</p><div class="qbl-controls qbl-second" aria-label="اختر نوع السحابة"></div>' +
+      '<div class="qbl-shape" role="img"></div>');
+    const levels = one(".qbl-controls");
+    const levelHeading = document.createElement("p");
+    levelHeading.className = "qbl-choice-heading";
+    levelHeading.textContent = "١. اختر مستوى";
+    levels.before(levelHeading);
     const shape = one(".qbl-shape");
-    const shapeLabel = ["شكل كروي", "شكل بفصّين", "مثال بشكل أربعة فصوص", "مثال بشكل متعدد الفصوص"];
-    let shell = 1;
+    const shapeLabel = ["كروي", "جزآن بارزان", "أشكال متنوّعة", "أشكال أكثر تنوّعاً"];
+    const cloudLabel = ["سحابة كروية", "سحابة لها جزآن بارزان على جانبي النواة", "مثال لسحابة لها أربعة أجزاء بارزة", "مثال لسحابة لها ثمانية أجزاء بارزة"];
+    const options = ["الأول", "الثاني", "الثالث", "الرابع"];
+    let shell = 2;
+
     function chooseType(l) {
       shape.dataset.shape = types[l];
-      shape.setAttribute("aria-label", shapeLabel[l]);
+      shape.setAttribute("aria-label", cloudLabel[l]);
       shape.innerHTML = '<span></span>'.repeat([1, 2, 4, 8][l]);
-      setStatus(math("ℓ", l) + ' يعطي السوية ' + ltr(shell + types[l]) + " · " + shapeLabel[l] + ".");
+      setStatus("نقرأ " + ltr(shell + types[l]) + " هكذا. الرقم " + ltr(shell) + " للمستوى، والحرف " + ltr(types[l]) +
+        " لنوع السحابة. رقم هذا النوع " + math("ℓ", l) + ". " + cloudLabel[l] + ".");
     }
+
     function chooseShell(n) {
       shell = n;
-      buttons(one(".qbl-second"), range(n).map((l) => [l, ltr(l + " · " + types[l])]), chooseType, 0);
+      buttons(one(".qbl-second"), range(n).map((l) => [l, ltr(types[l]) + " · " + shapeLabel[l]]), chooseType, 0);
       chooseType(0);
     }
-    buttons(one(".qbl-controls"), range(4, 1).map((n) => [n, math("n", n)]), chooseShell, 1);
-    chooseShell(1);
+
+    buttons(levels, options.map((name, index) => [index + 1, "المستوى " + name]), chooseShell, 2);
+    chooseShell(2);
   }
 
   if (id === "ml") {

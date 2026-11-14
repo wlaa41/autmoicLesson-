@@ -133,3 +133,12 @@
 .qbl-capacity-row.qbl-counted { background: var(--qbl-tint); border-color: #9e7bc9; }
 .qbl-capacity-row div { display: flex; flex-wrap: wrap; gap: 4px; }
 .qbl-capacity-row div span { display: inline-grid; width: 28px; height: 25px; place-items: center; border: 1px solid #bca4dc; border-radius: 4px; font-family: system-ui,sans-serif; line-height: 1; }
+.qbl-lab .qbl-choice-heading{font-size:.92rem;font-weight:700;margin-block-start:10px}
+.qbl-spectrum-demo{margin-block:10px 13px}
+.qbl-spectrum-toggle{min-height:44px;border:1px solid #bda8df;border-radius:8px;background:#efe7ff;color:#432377;font-weight:700;padding-inline:10px}
+.qbl-spectrum{direction:ltr;position:relative;height:58px;margin-block:8px;border-radius:7px;background:#121426;overflow:hidden}
+.qbl-spectrum i{position:absolute;top:0;bottom:0;width:3px;background:currentColor;box-shadow:0 0 8px currentColor}
+.qbl-spectrum i:nth-child(1){left:11%;color:#b58bff}
+.qbl-spectrum i:nth-child(2){left:18%;color:#9499ff}
+.qbl-spectrum i:nth-child(3){left:33%;color:#64ecff}
+.qbl-spectrum i:nth-child(4){left:82%;color:#ff6666}
